@@ -1,0 +1,658 @@
+<html>
+    <head>
+      <meta name='viewport' content = 'width = device-width, initial-scale = 1.0, user-scalable = no'/>
+      <script type="text/javascript" src="jquery-2.1.3.min.js"-></script>
+      <script type="text/javascript" src="introtoapps.min.js"-></script>
+
+      <script type="text/javascript">
+        var laserNumber =1;
+        var maxHealth = 240;
+        var maxPlanets= 60;
+        var lives = 10;
+        var planetIncrease =1;
+        var planetDefended =1;
+        var alienSpeedIncrease =1;
+        var reloadProgress =160;
+
+
+
+
+
+        $(document).ready(function() {
+            backgroundMusic.play();
+            console.log("Width: " + $(window).width());
+            console.log("Height: " + $(window).height());
+
+            // Loads the document and logs if it is in Landscape or Portrait mode
+
+            if($(window).width() < $(window).height()) {
+                console.log("Portrait mode");
+                $(".page").css('left', 30)
+            } else {
+                console.log("Landscape mode")
+                $(".page").css('left', 200)
+            }
+
+            // positions the "page" class to decide where the popups will show. Makes it more responsive.
+
+            $("#audioOff").onTap(function(){
+                backgroundMusic.pause();
+                $("#audioOff").addClass("page");
+                $("#audioOff").removeClass("show");
+                $("#audioOn").removeClass("audioPage");
+                $("#audioOn").addClass("show");
+
+            });
+            $("#audioOn").onTap(function(){
+                backgroundMusic.play();
+                $("#audioOff").addClass("show");
+                $("#audioOff").removeClass("page");
+                $("#audioOn").removeClass("show");
+                $("#audioOn").addClass("audioPage");
+
+            });
+
+            // pauses the background music when user clicks on the audioOff buttom, changes the Icon to show another button to turn on the music and then loops it.
+
+
+            $(".alien").moveTo(90);
+            $(".alien").speed(.3);
+            $(".alien").autoBounceOff(true);
+
+            $(".alien").onCollision(function(otherObject) {
+              if (otherObject.hasClass("laser")) {
+                  collisionSound.play();
+
+                  maxHealth -= 60
+                  maxPlanets += 15
+                  planetIncrease +=1
+                  planetDefended +=1
+
+                  // On the collision of the lasers to the alien creates sound and adjusts variables.
+
+
+                  $(".health").css('width',  maxHealth  );
+                  if($(window).width() < $(window).height()) {
+                      if(planetIncrease == 5)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 9)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 13)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 17)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 21)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 25)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 29)
+                      $(".planets").css('height',  maxPlanets  );
+                      if(planetIncrease == 33)
+                      $(".planets").css('height',  maxPlanets  );
+                  } else {
+                      if(planetIncrease == 5)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 9)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 13)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 17)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 21)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 25)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 29)
+                      $(".planets").css('width',  maxPlanets  );
+                      if(planetIncrease == 33)
+                      $(".planets").css('width',  maxPlanets  )
+
+                      // adds width or height to the planets css depending if its in landscape or portrait mode.
+                  }
+                  if(maxHealth == 0) {
+                      $(".health").css('width',  240);
+                      (maxHealth += 240);
+                  }
+                  if(planetDefended == 37){
+                      $(".health").css('width',  0);
+                  }
+
+                    // If the health goes down to 0, it will add the max width to the CSS reseting it. If the planets defended variable is maxxed out it keeps the health at zero since the game is over
+
+                  if(planetDefended == 5) {
+                      console.log("Mercury:", planetDefended);
+                      $("#mercury").addClass("show");
+
+                      $("#mercury").onTap(function(){
+                          $("#mercury").removeClass("show");
+                          $(".alien").speed(.5);
+                      });
+
+                      // shows the mercury information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 9) {
+                      console.log("Venus");
+                      $("#venus").addClass("show");
+
+                      $("#venus").onTap(function(){
+                          $("#venus").removeClass("show");
+                          $(".alien").speed(.6);
+                      });
+
+                      // shows the venus information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 13) {
+                      console.log("Earth");
+                      $("#earth").addClass("show");
+
+                      $("#earth").onTap(function(){
+                          $("#earth").removeClass("show");
+                          $(".alien").speed(.7);
+                      });
+                      // shows the earth information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 17) {
+                      console.log("mars");
+                      $("#mars").addClass("show");
+
+                      $("#mars").onTap(function(){
+                          $("#mars").removeClass("show");
+                          $(".alien").speed(.8);
+                      });
+                      // shows the mars information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 21) {
+                      console.log("jupiter");
+                      $("#jupiter").addClass("show");
+
+                      $("#jupiter").onTap(function(){
+                          $("#jupiter").removeClass("show");
+                          $(".alien").speed(.9);
+                      });
+                      // shows the jupiter information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 25) {
+                      console.log("saturn");
+                      $("#saturn").addClass("show");
+
+                      $("#saturn").onTap(function(){
+                          $("#saturn").removeClass("show");
+                          $(".alien").speed(1);
+                      });
+                      // shows the saturn information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 29) {
+                      console.log("uranus");
+                      $("#uranus").addClass("show");
+
+                      $("#uranus").onTap(function(){
+                          $("#uranus").removeClass("show");
+                          $(".alien").speed(1.2);
+                      });
+                      // shows the uranus information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 33) {
+                      console.log("neptune");
+                      $("#neptune").addClass("show");
+
+                      $("#neptune").onTap(function(){
+                          $("#neptune").removeClass("show");
+                          $(".alien").speed(1.4);
+                      });
+                      // shows the neptune information popup menu if the alien has been hit enough times, increasing the planetDefended variable.
+                  }
+                  if(planetDefended == 37) {
+                      console.log("winner!");
+                      $("#youWin").addClass("show");
+
+                      $("#youWin").onTap(function(){
+                          ReloadPage();
+
+                          // when the variable planetDefneded reaches maximum adds the winning popup, once it is clicked the game will reset itsself from the function
+
+                      });
+                  }
+              }
+              });
+
+            $("body").onTap(function(event) {
+                if(reloadProgress >= 40) {
+
+
+                laserSound.play();
+                $("body").append("<div id='laser" + laserNumber + "' class='laser'></div>");
+                $("#laser" + laserNumber).moveTo(0);
+                $("#laser" + laserNumber).speed(2);
+                $("#laser" + laserNumber).css("bottom","0px");
+                $("#laser" + laserNumber).css("left", event.clientX + "px");
+                }
+                $("body").append("<div class='spaceship'></div>")
+                $(".spaceship").css("bottom","0px");
+                $(".spaceship").css("left", event.clientX + "px");
+                laserNumber++;
+                reloadProgress -=40;
+                $(".reloadBar").css('height',  reloadProgress  );
+                if(reloadProgress == 0)
+                    $("#noAmmo").addClass("show");
+
+
+
+                adjustLives();
+            });
+
+            $("#noAmmo").onTap(function(event) {
+                $(".reloadBar").css('height',  160  );
+                $("#noAmmo").addClass("ammoHide");
+                $("#noAmmo").removeClass("show");
+                reloadProgress =160;
+                chargeUp.play();
+
+
+            });
+            $("#titleBackground").onTap(function(event) {});
+            $("#titlePageTitle").onTap(function(event) {});
+
+            function adjustLives() {
+                lives = lives - 1;
+                console.log("Current lives " + lives);
+            }
+                function ReloadPage() {
+                    location.reload();
+
+            }
+
+
+
+
+        });
+
+
+
+
+
+        </script>
+    </head>
+
+        <style type="text/css">
+            body {
+            background-image: url('images/background.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #leftwall{
+          position: absolute;
+          z-index: 10;
+          width: 10px;
+          background-color: black;
+          height: 100vh;
+          top: 0px;
+          left: 0px;
+          z-index: 10;
+
+        }
+        #rightwall{
+          position: absolute;
+          z-index: 10;
+          width: 10px;
+          background-color: black;
+          height: 100vh;
+          top: 0px;
+          right: 0px;
+          z-index: 10;
+        }
+        #mercury{
+          background-image: url("images/mercury.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #venus{
+          background-image: url("images/venus.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #earth{
+          background-image: url("images/earth.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #mars{
+          background-image: url("images/mars.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #jupiter{
+          background-image: url("images/jupiter.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #saturn{
+          background-image: url("images/saturn.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #uranus{
+          background-image: url("images/uranus.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #neptune{
+          background-image: url("images/neptune.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #youWin{
+          background-image: url("images/youWin.png");
+          background-size: 300px 300px;
+          width: 300px;
+          height: 300px;
+        }
+        #audioOff{
+            background-image: url("images/audioOff.png");
+            background-size: 60px 60px;
+            width: 60px;
+            height: 60px;
+            left: 10px;
+            bottom: 0px;
+            position: absolute;
+        }
+        #audioOn{
+            background-image: url("images/audioOn.png");
+            background-size: 60px 60px;
+            width: 60px;
+            height: 60px;
+            left: 10px;
+            bottom: 0px;
+            position: absolute;
+        }
+        .page {
+        	display:none;
+        	position: absolute;
+        	top: 50px;
+        	left: 30px;
+        	z-index: -1;
+        }
+        .titlePage {
+        	display:none;
+        	position: absolute;
+        	z-index: -1;
+        }
+        .ammoHide {
+        	display:none;
+        	position: absolute;
+        	bottom: 0px;
+        	right: 20px;
+        	z-index: -1;
+        }
+        .audioPage {
+        	display:none;
+        	position: absolute;
+        	bottom: 0px;
+        	left: 10px;
+        	z-index: -1;
+            position: absolute;
+        }
+        .showTitle {
+        	z-index: 13 !important;
+        	display:block !important;
+        }
+        .show {
+        	z-index: 12 !important;
+        	display:block !important;
+        }
+        .health{
+          background-image: url("images/Heart.png");
+          background-size: 60px 60px;
+          width: 240px;
+          height: 60px;
+          background-repeat: repeat-x;
+          top: 30px;
+          left: 30px;
+          z-index: 11;
+        }
+
+        .reloadBar{
+            background-image: url("images/reload.png");
+            background-size: 40px 40px;
+            width: 40px;
+            height: 160px;
+            background-repeat: repeat-y;;
+            position: absolute;
+            bottom: 0px;
+            right: 15px;
+            z-index: 11;
+        }
+
+
+        .planets{
+          background-image: url("images/planetsResponsive.png");
+          background-size: 540px 540px;
+          width: 60px;
+          height: 60px;
+          right: 30px;
+          background-repeat: no-repeat;
+          z-index: 9;
+
+
+        }
+        .alien {
+          background-image: url("images/Alien.png");
+          background-size: 80px 80px;
+          width: 80px;
+          height: 80px;
+          background-repeat: no-repeat;
+          position: absolute;
+          top: 100px;
+          left: 100px;
+          z-index: 10;
+        }
+        .spaceship {
+          background-image: url("images/Spaceship.png");
+          background-size: 80px 80px;
+          width: 80px;
+          height: 80px;
+          position: fixed;
+
+        }
+         .laser {
+          background-image: url("images/laser.png");
+          background-size: 40px 40px;
+          width: 40px;
+          height: 40px;
+          position: fixed;
+          z-index: 10;
+        }
+        #noAmmo{
+            background-image: url("images/noAmmo.png");
+            background-size: 60px 60px;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            bottom: 0px;
+            right: 15px;
+            z-index: 11;
+            animation-name: noAmmoAnimate;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes noAmmoAnimate {
+            0% {
+                transform: scale(.5) rotate(0deg);
+
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+
+            }
+
+            100% {
+                transform: scale(.5) rotate(360deg);
+
+            }
+         /*.asteroid {
+           background-image: url('images/asteroid.png');
+           width: 80px;
+           height: 80px;
+           background-size: 80px 80px;
+           animation-name: asteroidAnimate;
+           animation-duration: 2s;
+           animation-iteration-count: infinite;
+           animation-timing-function: linear;
+
+           position: absolute;
+           bottom: 100vw;
+           left: 70px;
+
+        }
+           @keyframes asteroidAnimate {
+               0% {
+                   bottom: 100vw;
+                   transform: rotate(0deg);
+               }
+
+               100% {
+                   bottom: -128px;
+                   transform: rotate(360deg);
+               }
+        }*/
+
+
+
+        #star {
+          width: 3px;
+          height: 3px;
+          background-color: white;
+          animation-name: starFlashing;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+          border-radius: 2px;
+          z-index: 5;
+
+        }
+
+        #star2 {
+          width: 3px;
+          height: 3px;
+          background-color: white;
+
+          animation-name: starFlashing;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          border-radius: 2px;
+          z-index: 5;
+        }
+            .position1 {
+            top: 401px;
+            left: 123px;
+            position: absolute;
+
+            }
+            .position2 {
+            top: 450px;
+            right: 172px;
+            position: absolute;
+            }
+            .position3 {
+            bottom: 60px;
+            left: 270px;
+            position: absolute;
+            }
+            .position4 {
+            top: 150px;
+            right: 150px;
+            position: absolute;
+            }
+            .position5 {
+            top: 380px;
+            left: 720px;
+            position: absolute;
+            }
+            .position6 {
+            top: 90px;
+            right: 280px;
+            position: absolute;
+            }
+            .position7 {
+            bottom: 340px;
+            left: 177px;
+            position: absolute;
+            }
+            .position8 {
+            top: 90px;
+            left: 180px;
+            position: fixed;
+            }
+
+
+        @keyframes starFlashing {
+            0% {
+              background-color: white;
+            }
+            50% {
+              background-color: black;
+            }
+            100% {
+              background-color: white;
+        }
+
+        #backgroundMusic {
+
+        }
+
+          </style>
+      <body>
+          <audio id="backgroundMusic">
+                <source src="images/backgroundMusic.mp3" type="audio/mpeg">
+                </audio>
+          <audio id="laserSound">
+                <source src="images/laserSound.mp3" type="audio/mpeg">
+                </audio>
+          <audio id="collisionSound">
+                <source src="images/collisionSound.mp3" type="audio/mpeg">
+                </audio>
+          <audio id="chargeUp">
+                <source src="images/chargeUp.mp3" type="audio/mpeg">
+                </audio>
+
+
+
+          <div id="mercury" class="page"></div>
+          <!-- <div id="startGame" class="showTitle">Start Game!</div> -->
+
+          <div id="noAmmo" class="ammoHide"></div>
+          <div id='audioOff' class='show'></div>
+          <div id='audioOn' class='audioPage'></div>
+          <div id="venus" class="page"></div>
+          <div id="earth" class="page"></div>
+          <div id="mars" class="page"></div>
+          <div id="jupiter" class="page"></div>
+          <div id="saturn" class="page"></div>
+          <div id="uranus" class="page"></div>
+          <div id="neptune" class="page"></div>
+          <div id="youWin" class="page"></div>
+          <div id="star" class="position1"></div>
+          <div id="star2" class="position2"></div>
+          <div id="star" class="position3"></div>
+          <div id="star2" class="position4"></div>
+          <div id="star" class="position5"></div>
+          <div id="star2" class="position6"></div>
+          <div id="star2" class="position7"></div>
+          <div id="star" class="position8"></div>
+          <div class="alien"></div>
+          <div id="leftwall"></div>
+          <div id="rightwall"></div>
+          <div class="asteroid"></div>
+          <div class="health"></div>
+          <div class="reloadBar"></div>
+          <div class="planets"></div>
+
+      </body>
+      </html>

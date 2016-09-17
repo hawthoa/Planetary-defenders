@@ -1,0 +1,24 @@
+Alien.png - Created by myself (using adobe photoshop). 
+audioOff.png- Created by myself (using adobe photoshop). 
+audioOn.png- Created by myself (using adobe photoshop). 
+Background.png- Created by myself (using adobe photoshop). 
+earth.png- Created by myself (using adobe photoshop). 
+venus.png- Created by myself (using adobe photoshop). 
+mercury.png- Created by myself (using adobe photoshop). 
+mars.png- Created by myself (using adobe photoshop). 
+jupiter.png Created by myself (using adobe photoshop). 
+saturn.png Created by myself (using adobe photoshop). 
+uranus.png Created by myself (using adobe photoshop). 
+neptune.png Created by myself (using adobe photoshop). 
+Heart.png Created by myself (using adobe photoshop). 
+youWin.png Created by myself (using adobe photoshop). 
+spaceship.png Created by myself (using adobe photoshop). 
+planets.png Created by myself (using adobe photoshop). 
+planetsResponsive.png Created by myself (using adobe photoshop). 
+laser.png Created by myself (using adobe photoshop). 
+reload.png Created by myself (using adobe photoshop). 
+noAmmo.png Created by myself (using adobe photoshop). 
+backgroundMusic.mp3 - https://www.youtube.com/watch?v=ZD_Urg9fOs0 license CC by "no copyright sounds"
+chargeUp.mp3 - http://soundbible.com/1636-Power-Up-Ray.html license CC by "Mike Koenig"
+laserSound.mp3 - http://soundbible.com/472-Laser-Blasts.html license CC by "sound bible"
+collisionSound.mp3 - http://soundbible.com/1004-Frying-Pan-Hit.html CC by Mike Koenig"
